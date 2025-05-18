@@ -7,13 +7,11 @@ require('dotenv').config()
 const PORT = process.env.PORT
 const app = express()
 
-const corsOptions = {
-    origin: process.env.CLIENT_URL, 
-    credentials: true,
-    methods: 'GET,POST', 
-    allowedHeaders: 'Content-Type,Authorization',
-};
-app.use(cors(corsOptions));
+
+app.use(cors({
+    origin: "*",
+    credentials: true
+}));
 app.use(cookieParser())
 app.use(express.json())
 app.use('/api/auth', require('./routes/user.route'))
